@@ -1,0 +1,33 @@
+apply plugin: 'java'
+apply plugin: 'java'
+
+sourceCompatibility = 1.7
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    provided
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile group: 'org.javassist', name: 'javassist', version: '3.18.2-GA'
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Jvm China Agent',
+                'Implementation-Version': version,
+                'Agent-Class': 'com.cn.jvm.tool.ChinaAgent',
+                'Boot-Class-Path': 'javassist-3.18.2-GA.jar',
+                'Can-Retransform-Classes': true,
+                'Can-Redefine-Classes': true
+    }
+    baseName = project.name
+    destinationDir = file("dist")
+    from { (configurations.compile - configurations.provided).collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
