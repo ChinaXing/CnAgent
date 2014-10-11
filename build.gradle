@@ -30,4 +30,14 @@ task fatJar(type: Jar) {
     destinationDir = file("dist")
     from { (configurations.compile - configurations.provided).collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
+
+    // jarjar prevent conflict
+    exec {
+        commandLine 'java', '-jar',
+                "jarjar-1.4.jar",
+                'process',
+                "jarjar.rule",
+                "dist/${project.name}-${version}.jar",
+                "dist/${project.name}-repackaged-${version}.jar"
+    }
 }

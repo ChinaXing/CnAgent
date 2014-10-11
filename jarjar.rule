@@ -1,0 +1,1 @@
+rule javassist.** com.cn.jvm.tool.agent.lib.@0
