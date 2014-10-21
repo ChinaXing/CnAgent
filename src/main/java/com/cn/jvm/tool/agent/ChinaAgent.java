@@ -14,9 +14,9 @@ public class ChinaAgent {
         }
 
         System.out.println("agent args : " + agentArgs);
-        int whiteSpacePos = agentArgs.indexOf(" ");
+        int whiteSpacePos = agentArgs.indexOf("|");
         String classNameMethod = agentArgs.substring(0, whiteSpacePos);
-        String enhanceCode = agentArgs.substring(whiteSpacePos + 1);
+        String enhanceCode = agentArgs.substring(whiteSpacePos + 1).replace("$", " ");
 
         String className = classNameMethod.split("::")[0];
         String method = classNameMethod.split("::")[1];
@@ -33,6 +33,10 @@ public class ChinaAgent {
         } catch (Exception e) {
             System.out.println("Error when reTransform : " + e.getMessage());
         }
+    }
+
+    public static void premain(String agentArgs, Instrumentation inst) {
+        agentmain(agentArgs, inst);
     }
 
     private static void help() {

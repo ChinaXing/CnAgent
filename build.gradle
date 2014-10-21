@@ -21,7 +21,8 @@ task fatJar(type: Jar) {
     manifest {
         attributes 'Implementation-Title': 'Jvm China Agent',
                 'Implementation-Version': version,
-                'Agent-Class': 'com.cn.jvm.tool.ChinaAgent',
+                'Agent-Class': 'com.cn.jvm.tool.agent.ChinaAgent',
+                'Premain-Class': 'com.cn.jvm.tool.agent.ChinaAgent',
                 'Boot-Class-Path': 'javassist-3.18.2-GA.jar',
                 'Can-Retransform-Classes': true,
                 'Can-Redefine-Classes': true
