@@ -42,7 +42,7 @@ public class ChinaAgent {
     private static void help() {
         System.out.println("arguments : className::methodName enhanceCode");
         System.out.println("eg. => ");
-        System.out.println(" com.alibaba.otter.canal.sink.entry.EntryEventSink::sink filterTransactionEntry = false;");
+        System.out.println(" com.alibaba.otter.canal.sink.entry.EntryEventSink::sink|filterTransactionEntry$=$false;");
         System.out.println();
         System.out.println("where :");
         System.out.println("ClassName   :  com.alibaba.otter.canal.sink.entry.EntryEventSink");
